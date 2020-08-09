@@ -1,0 +1,1 @@
+.app{display:flex;flex-direction:column;align-items:center;padding-top:100px}.app .transaction-card{width:500px;margin-top:20px}.transaction-card-hover:hover{cursor:pointer;background-color:#efefef}.transaction-card .card-date{margin-top:20px}

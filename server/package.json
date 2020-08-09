@@ -1,0 +1,63 @@
+{
+  "name": "transitionmanager",
+  "version": "0.0.1",
+  "description": "",
+  "main": "www.js",
+  "scripts": {
+    "lint": "eslint",
+    "start": "NODE_ENV=development port=2222 npm-run-all watch:dev",
+    "watch:dev": "nodemon --exec babel-node --inspect ./src/bin/www",
+    "prod": "npm install && NODE_ENV=production port=2222 npm-run-all build server",
+    "build": "npm-run-all clean transpile",
+    "clean": "rimraf dist-server",
+    "transpile": "babel ./src --out-dir dist-server && npm run mv-ui-build",
+    "mv-ui-build": "cp -R ./src/build ./dist-server ",
+    "server": "node ./dist-server/bin/www"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
+    "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
+    "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.9.0",
+    "@babel/preset-env": "^7.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "rimraf": "^3.0.2"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      [
+        "@babel/transform-runtime"
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true
+    },
+    "rules": {
+      "no-use-before-define": 0,
+      "func-names": 0,
+      "import/prefer-default-export": 0
+    }
+  }
+}
